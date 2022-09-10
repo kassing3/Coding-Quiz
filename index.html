@@ -11,16 +11,28 @@
 
 <body>
   <header>
-    <button class="button-secondary"> View High Scores </button>
-    <div id="countdown"></div>
+    <h1>CODING QUIZ</h1>
+    <p id="timer">TIMER: <span id="countdown">0</span></p>
   </header>
-    <main class="container">
-    <section id="instructions">
-        <h1>Do you know JavaScript?</h1>
+  
+    <section id="instructions" class="container hidden">
+        <h2>JavaScript: Coding Quiz</h1>
         <p>Test your coding knowledge by answering a series of questions about JavaScript within the set time limit. If you answer a question incorrectly, you will lose points and time off the clock!</p>
-        <button class="button-primary">Start Quiz</button>
+        <button id="start-btn" class="primary-btn">START QUIZ</button>
+        <button id="high-scores-btn" class="secondary-btn high-scores"> VIEW HIGH SCORES </button>
     </section>
-   </main>
+
+    <section id="quiz-game" class="container">
+        <h2 id="question">Question Here</h2>
+        <ul class="choices-list">
+            <li class="choices"> Answer </li>
+            <li class="choices"> Answer </li>
+            <li class="choices"> Answer </li>
+            <li class="choices"> Answer </li>
+        </ul>
+        <button id="next-btn">NEXT</button>
+    </section>
+   
 </body>
 
 
