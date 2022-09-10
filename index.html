@@ -15,14 +15,14 @@
     <p id="timer">TIMER: <span id="countdown">0</span></p>
   </header>
   
-    <section id="instructions" class="container hidden">
+    <section id="instructions" class="container">
         <h2>JavaScript: Coding Quiz</h1>
         <p>Test your coding knowledge by answering a series of questions about JavaScript within the set time limit. If you answer a question incorrectly, you will lose points and time off the clock!</p>
         <button id="start-btn" class="primary-btn">START QUIZ</button>
-        <button id="high-scores-btn" class="secondary-btn high-scores"> VIEW HIGH SCORES </button>
+        <button id="high-scores-btn"> VIEW HIGH SCORES </button>
     </section>
 
-    <section id="quiz-game" class="container">
+    <section id="quiz-game" class="container hidden">
         <h2 id="question">Question Here</h2>
         <ul class="choices-list">
             <li class="choices"> Answer </li>
@@ -31,6 +31,22 @@
             <li class="choices"> Answer </li>
         </ul>
         <button id="next-btn">NEXT</button>
+    </section>
+
+    <section id="results" class="container hidden">
+        <h2> Quiz Complete!</h2>
+        <p class="message">Your final score is <spa id="message-score">0</span></p>
+        <form>
+            <div class="input-group">
+                <label for="initials">Enter Initials:</label>
+                <input type="text" name="initials" id="initials" placeholder="JD" />
+                <button id="submit-btn">SUBMIT</button>
+            </div>
+        </form>
+    </section>
+
+    <section id="high-scores" class="container hidden">
+        <h2 > HIGH SCORES</h2>
     </section>
    
 </body>
