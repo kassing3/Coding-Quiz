@@ -12,10 +12,10 @@
 <body>
   <header>
     <h1>CODING QUIZ</h1>
-    <p id="timer">TIMER: <span id="countdown">0</span></p>
+    <p id="timer">TIMER: <span id="countdown">60</span></p>
   </header>
   
-    <section id="instructions" class="container ">
+    <section id="instructions" class="container  ">
         <h2>JavaScript: Coding Quiz</h1>
         <p>Test your coding knowledge by answering a series of questions about JavaScript within the set time limit. If you answer a question incorrectly, you will lose points and time off the clock!</p>
         <button id="start-btn" class="primary-btn">START QUIZ</button>
@@ -23,19 +23,16 @@
     </section>
 
     <section id="quiz-game" class="container hidden">
-        <h2 id="question">Question Here</h2>
+        <h2 id="question"></h2>
         <ul class="choices-list">
-            <li class="choices"> Answer </li>
-            <li class="choices"> Answer </li>
-            <li class="choices"> Answer </li>
-            <li class="choices"> Answer </li>
+           
         </ul>
         <button id="next-btn">NEXT</button>
     </section>
 
     <section id="results" class="container hidden">
         <h2> Quiz Complete!</h2>
-        <p class="message">Your final score is <spa id="message-score">0</span></p>
+        <p class="message">Your final score is <spa id="message-score"></span></p>
         <form>
             <div class="input-group">
                 <label for="initials">Enter Initials:</label>
@@ -47,6 +44,8 @@
 
     <section id="high-scores" class="container hidden">
         <h2 > HIGH SCORES</h2>
+        <h3 id="initials"> <span id="score"></span></h3>
+        
     </section>
 
    <script src="./assets/js/script.js" rel="script"></script>
