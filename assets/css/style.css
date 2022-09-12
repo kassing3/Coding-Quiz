@@ -80,6 +80,7 @@ button:hover {
     padding: .8rem;
     width:20rem;
     border: 2px solid #59656F;
+    color: black;
 }
 
 .choices:hover {
