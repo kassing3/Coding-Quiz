@@ -129,6 +129,8 @@ function showQuestions() {
     nextBtn.addEventListener('click', nextQuestion);
 
     highScoreNumInput.textContent = score;
+    highScoreReport.highScoreNum.push(score);
+    localStorage.setItem('score', JSON.stringify(score));
 };
 
 
@@ -155,37 +157,73 @@ startBtn.addEventListener('click', startGame);
 
 // HIGH SCORE CODE
 
-
-submitBtn.addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    let highScoreReport = {
-        highScoreInt: highScoreInitialsInput.value.trim(),
-        highScoreNum: highScoreNumInput.value.trim(),
-    };
-
-    localStorage.setItem("highScoreReport", JSON.stringify(highScoreReport));
-});
-
-
-function getHighScores() {
-    instructSection.classList.add('hidden');
-    quizSection.classList.add('hidden');
-    highScoresSection.classList.remove('hidden');
-
-    let initials = localStorage.getItem("highScoreReport");
-    let scoreLi = document.createElement('li');
-    scoreLi.textContent =  initials;
-
-
-    // for (let i = 0; i < highScoreReport.highScoreInt.length; i++) {
-    //     let scoreOutput = highScoreReport.highScoreInt[i];
-        
-    //     let scoreLi = document.createElement('li');
-    //     scoreLi.textContent =  initials;
-    //     highScoreInitials.appendChild(scoreEl);
-    // }
-
+let highScoreReport = {
+    highScoreInt: [],
+    highScoreNum:[]
 };
 
-highScoresbtn.addEventListener('click', getHighScores);
+
+function showHighScore() {
+    
+    for (let i = 0; i < highScoreReport.highScoreInt.length; i++) {
+        for (let j = 0; j < highScoreReport.highScoreInt.length; j++ ) {
+            let int = highScoreReport.highScoreInt[i];
+            let num =  highScoreReport.highScoreInt[j];
+
+            let intEl = document.createElement('li');
+            intEl.textContent = int;
+            highScoreInitials.appendChild(intEl)
+
+            let scoreEl= document.createElement('li');
+            scoreEl.textContent = num;
+            highScoreResult.appendChild(scoreEl);
+        
+        }
+    }
+
+}
+
+submitBtn.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    localStorage.setItem('initials', JSON.stringify(highScoreInitialsInput.value));
+    highScoreReport.highScoreInt.push(highScoreInitialsInput.value);
+
+    
+
+})
+
+// submitBtn.addEventListener('submit', function(event) {
+//     event.preventDefault();
+
+//     let highScoreReport = {
+//         highScoreInt: [],
+//         highScoreNum: [highScoreNumInput.value.trim()],
+//     };
+//     highScoreReport.highScoreInt.push(highScoreInitialsInput.value)
+
+//     localStorage.setItem("highScoreReport", JSON.stringify(highScoreReport));
+// });
+
+
+// function getHighScores() {
+//     instructSection.classList.add('hidden');
+//     quizSection.classList.add('hidden');
+//     highScoresSection.classList.remove('hidden');
+
+//     let initials = localStorage.getItem("highScoreReport");
+//     let scoreLi = document.createElement('li');
+//     scoreLi.textContent =  initials;
+
+
+//     for (let i = 0; i < highScoreReport.highScoreInt.length; i++) {
+//         let scoreOutput = highScoreReport.highScoreInt[i];
+        
+//         let scoreLi = document.createElement('li');
+//         scoreLi.textContent =  initials;
+//         highScoreInitials.appendChild(scoreEl);
+//     }
+
+// };
+
+highScoresbtn.addEventListener('click', showHighScore);
