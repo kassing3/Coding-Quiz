@@ -108,8 +108,7 @@ function showQuestions() {
         choiceEl.textContent = questionsObject[index].options[i];
         choiceEl.classList.add('choices');
         choices.appendChild(choiceEl);
-
-        choiceEl.addEventListener('click', function() {
+        choiceEl.addEventListener('click', function(event) {
             if (choiceEl.textContent === questionsObject[index].answer) {
                 choiceEl.style.backgroundColor = 'green';
                 score = score + 5;
@@ -121,10 +120,8 @@ function showQuestions() {
                     console.log(score);
                 };  
                 timeLeft = timeLeft - 5;
-            };  
-        });
-
-    };
+            };
+    })};
 
     nextBtn.addEventListener('click', nextQuestion);
 
@@ -135,11 +132,13 @@ function showQuestions() {
 
 
  function nextQuestion() {
+    
     while (choices.hasChildNodes()) {
         choices.removeChild(choices.lastChild);
     };
-    index++;
+    index++
     showQuestions();
+    
 };
     
 
@@ -164,6 +163,9 @@ let highScoreReport = {
 
 
 function showHighScore() {
+    instructSection.classList.add('hidden');
+    quizSection.classList.add('hidden');
+    highScoresSection.classList.remove('hidden');
     
     for (let i = 0; i < highScoreReport.highScoreInt.length; i++) {
         for (let j = 0; j < highScoreReport.highScoreInt.length; j++ ) {
@@ -178,10 +180,11 @@ function showHighScore() {
             scoreEl.textContent = num;
             highScoreResult.appendChild(scoreEl);
         
-        }
-    }
+        };
+    };
 
-}
+
+};
 
 submitBtn.addEventListener("submit", function(event) {
     event.preventDefault();
