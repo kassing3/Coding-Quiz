@@ -11,7 +11,8 @@
 
 <body>
   <header>
-    <h1>CODING QUIZ</h1>
+    <button id="high-scores-btn"> VIEW HIGH SCORES </button>
+    <a href="./index.html"><h1>CODING QUIZ</h1></a>
     <p id="timer">TIMER: <span id="countdown">60</span></p>
   </header>
   
@@ -19,7 +20,6 @@
         <h2>JavaScript: Coding Quiz</h1>
         <p>Test your coding knowledge by answering a series of questions about JavaScript within the set time limit. If you answer a question incorrectly, you will lose points and time off the clock!</p>
         <button id="start-btn" class="primary-btn">START QUIZ</button>
-        <button id="high-scores-btn"> VIEW HIGH SCORES </button>
     </section>
 
     <section id="quiz-game" class="container hidden">
@@ -44,7 +44,9 @@
 
     <section id="high-scores" class="container hidden">
         <h2 > HIGH SCORES</h2>
-        <h3 id="initials"> <span id="score"></span></h3>
+        <ul id="initials-result">
+            
+        </ul>
         
     </section>
 
