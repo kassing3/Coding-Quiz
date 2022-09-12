@@ -48,31 +48,26 @@ let questionsObject = [
         answer: "&&",
         options: ["!", "||", "//", "&&"]
     },
-
     {questionNumb: 6,
         question: "What is a function called that do NOT have a name value?",
         answer: "Anonymous Functions",
         options: ["Undefined Function", "Anonymous Functions", "Arrow Functions", "Expressions"]
     },
-
     {questionNumb: 7,
         question: "A function found in the ___ scope, can be used anywhere in the program.",
         answer: "Global",
         options: ["Local", "Universe", "Data", "Global"]
     },
-
     {questionNumb: 8,
         question: "Elements in an array are arrange by ___ values.",
         answer: "Index",
         options: ["Method", "Position", "Index", "Key"]
     },
-
     {questionNumb: 9,
         question: "JavaScript arrays are ___, which means the value they contain can change.",
         answer: "Mutable",
         options: ["Global", "Local", "Constant", "Mutable"]
     },
-
     {questionNumb: 10,
         question: "Which operator can be used to invert a Boolean Value?",
         answer: "!",
@@ -92,7 +87,12 @@ function setTimer() {
         countdown.textContent = timeLeft;
 
         if (timeLeft <= 0) {
-            clearInterval(timerInterval)
+        clearInterval(timerInterval);
+        resultsSection.classList.remove('hidden');
+        quizSection.classList.add('hidden');
+        highScoreNumInput.textContent = score;
+        highScoreReport.highScoreNum.push(score);
+        localStorage.setItem('score', JSON.stringify(score));
         };
     }, 1000);
 };
@@ -106,12 +106,21 @@ function quizEnd() {
     localStorage.setItem('score', JSON.stringify(score));
 };
 
-
-function showQuestions() {
+function showQuestions(index) {
+    //if index == 10 --> do something
+   
     let currentQuestion = questionsObject[index];
     let questionEl = document.getElementById('question');
     questionEl.textContent = currentQuestion.question;
 
+    if (index < currentQuestion.length) {
+        resultsSection.classList.remove('hidden');
+        quizSection.classList.add('hidden');
+        highScoreNumInput.textContent = score;
+        highScoreReport.highScoreNum.push(score);
+        localStorage.setItem('score', JSON.stringify(score));
+    };
+   
     choices.innerHTML = '';
 
     for (var i = 0; i < currentQuestion.options.length; i++) {
@@ -123,15 +132,17 @@ function showQuestions() {
         choices.appendChild(optionNode);
     }
 
-    choices.addEventListener('click', questionClick);
-
-
+  
 };
+
+
+choices.addEventListener('click', questionClick);
 
 function questionClick(event) {
     var buttonEl = event.target;
-
+    
     if (!buttonEl.matches('.choices')) {
+        
         return;
     };
 
@@ -148,71 +159,27 @@ function questionClick(event) {
         score += 10;
         console.log(score);
     };
-
 };
 
+
+//what we worked on is starting here starting here
+
+nextBtn.addEventListener('click', nextQuestion);
 function nextQuestion (event) {
+    index++
 
-}
-
-
-
-// optionNode.addEventListener('click', questionClick());
-
-// nextBtn.addEventListener('click', nextQuestion);
-//    function showQuestions () {
-//     question.textContent = questionsObject[index].question;
+    if (index < 10) {
+        showQuestions(index);
+    } else {
+        resultsSection.classList.remove('hidden');
+        quizSection.classList.add('hidden');
+        highScoreNumInput.textContent = score;
+        highScoreReport.highScoreNum.push(score);
+        localStorage.setItem('score', JSON.stringify(score));
+    }; 
     
-//     for (let i = 0; i < 4; i++) {
-//         let choiceEl= document.createElement('li');
-//         choiceEl.textContent = questionsObject[index].options[i];
-//         choiceEl.classList.add('choices');
-//         choices.appendChild(choiceEl);
-//         choiceEl.addEventListener('click', function(event) {
-//             if (choiceEl.textContent === questionsObject[index].answer) {
-//                 choiceEl.style.backgroundColor = 'green';
-//                 score = score + 5;
-//                 console.log(score);
-//             } else {
-//                 choiceEl.style.backgroundColor = 'red';
-//                 if (score > 0) {
-//                     score = score - 5;
-//                     console.log(score);
-//                 };  
-//                 timeLeft = timeLeft - 5;
-//             };
-//     })};
-//     index++;
+};
 
-//     nextBtn.addEventListener('click', nextQuestion);
-
-//     // if (timeLeft <= 0 || index === questionsObject.length) {
-//     //     quizEnd();
-//     // } else {
-//     //     nextQuestion();
-//     // };
-//    };
-
-   
-   
-
-
-
-//  function nextQuestion() {
-
-//     if (choices.hasChildNodes()) {
-//         choices.innerHTML = '';
-        
-//         showQuestions();
-//     } 
-    
-//     // while (choices.hasChildNodes()) {
-//     //     choices.removeChild(choices.lastChild);
-//     // };
-//     // index++
-//     // showQuestions();
-    
-// };
     
 
 
@@ -220,10 +187,9 @@ function startGame(event) {
     instructSection.classList.add('hidden');
     quizSection.classList.remove('hidden');
 
-    showQuestions();
+    showQuestions(index);
     setTimer();
 };
-
 
 startBtn.addEventListener('click', startGame);
 
@@ -260,15 +226,71 @@ function showHighScore() {
 
 };
 
-submitBtn.addEventListener("submit", function(event) {
-    event.preventDefault();
-
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault()
     localStorage.setItem('initials', JSON.stringify(highScoreInitialsInput.value));
     highScoreReport.highScoreInt.push(highScoreInitialsInput.value);
-
-    
-
 });
+
+highScoresbtn.addEventListener('click', showHighScore);
+
+
+
+// optionNode.addEventListener('click', questionClick());
+
+
+//    function showQuestions () {
+//     question.textContent = questionsObject[index].question;
+    
+//     for (let i = 0; i < 4; i++) {
+//         let choiceEl= document.createElement('li');
+//         choiceEl.textContent = questionsObject[index].options[i];
+//         choiceEl.classList.add('choices');
+//         choices.appendChild(choiceEl);
+//         choiceEl.addEventListener('click', function(event) {
+//             if (choiceEl.textContent === questionsObject[index].answer) {
+//                 choiceEl.style.backgroundColor = 'green';
+//                 score = score + 5;
+//                 console.log(score);
+//             } else {
+//                 choiceEl.style.backgroundColor = 'red';
+//                 if (score > 0) {
+//                     score = score - 5;
+//                     console.log(score);
+//                 };  
+//                 timeLeft = timeLeft - 5;
+//             };
+//     })};
+//     index++;
+
+//     nextBtn.addEventListener('click', nextQuestion);
+
+//     // if (timeLeft <= 0 || index === questionsObject.length) {
+//     //     quizEnd();
+//     // } else {
+//     //     nextQuestion();
+//     // };
+//    };
+
+   
+
+
+//  function nextQuestion() { VERSION 2 
+
+//     if (choices.hasChildNodes()) {
+//         choices.innerHTML = '';
+        
+//         showQuestions();
+//     } 
+    
+//     // while (choices.hasChildNodes()) {
+//     //     choices.removeChild(choices.lastChild);
+//     // };
+//     // index++
+//     // showQuestions();
+    
+// };
+
 
 // submitBtn.addEventListener('submit', function(event) {
 //     event.preventDefault();
@@ -299,8 +321,3 @@ submitBtn.addEventListener("submit", function(event) {
 //         let scoreLi = document.createElement('li');
 //         scoreLi.textContent =  initials;
 //         highScoreInitials.appendChild(scoreEl);
-//     }
-
-// };
-
-highScoresbtn.addEventListener('click', showHighScore);
