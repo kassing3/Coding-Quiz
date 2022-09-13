@@ -107,19 +107,11 @@ function quizEnd() {
 };
 
 function showQuestions(index) {
-    //if index == 10 --> do something
-   
     let currentQuestion = questionsObject[index];
     let questionEl = document.getElementById('question');
     questionEl.textContent = currentQuestion.question;
 
-    if (index < currentQuestion.length) {
-        resultsSection.classList.remove('hidden');
-        quizSection.classList.add('hidden');
-        highScoreNumInput.textContent = score;
-        highScoreReport.highScoreNum.push(score);
-        localStorage.setItem('score', JSON.stringify(score));
-    };
+
    
     choices.innerHTML = '';
 
@@ -200,6 +192,12 @@ let highScoreReport = {
     highScoreInt: [],
     highScoreNum:[]
 };
+submitBtn.addEventListener("click", function(event) {
+    event.preventDefault()
+    localStorage.setItem('initials', JSON.stringify(highScoreInitialsInput.value));
+    highScoreReport.highScoreInt.push(highScoreInitialsInput.value);
+    showHighScore();
+});
 
 
 function showHighScore() {
@@ -207,6 +205,8 @@ function showHighScore() {
     resultsSection.classList.add('hidden');
     quizSection.classList.add('hidden');
     highScoresSection.classList.remove('hidden');
+    console.log('Someone with the initials of '+localStorage.getItem('initials')+' got a score of '
+    +localStorage.getItem('score'))
 
     for (let i = 0; i < highScoreReport.highScoreInt.length; i++) {
         for (let j = 0; j < highScoreReport.highScoreInt.length; j++ ) {
@@ -228,12 +228,7 @@ function showHighScore() {
 
 };
 
-submitBtn.addEventListener("click", function(event) {
-    event.preventDefault()
-    localStorage.setItem('initials', JSON.stringify(highScoreInitialsInput.value));
-    highScoreReport.highScoreInt.push(highScoreInitialsInput.value);
-    showHighScore();
-});
+
 
 highScoresbtn.addEventListener('click', showHighScore);
 
