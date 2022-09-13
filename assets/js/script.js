@@ -228,8 +228,6 @@ function showHighScore() {
 
 };
 
-
-
 highScoresbtn.addEventListener('click', showHighScore);
 
 
