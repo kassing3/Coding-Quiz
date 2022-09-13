@@ -113,7 +113,13 @@ input {
     width: 150px;
 }
 
+/* HIGH SCORES SECTION */
 
+#results-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; 
+}
 
 
 
